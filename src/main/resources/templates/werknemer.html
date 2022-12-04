@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments::head(title= ${werknemer} ? ${werknemer.volledigeNaam} :
+'Werknemer niet gevonden')}"></head>
+<body>
+<div th:if="not ${werknemer}" class="fout">
+    Werknemer
+    <th:block th:text="${id}"></th:block>
+    niet gevonden
+</div>
+<div th:if="${param.budgetFout}" class="fout">Onvoldoende budget</div>
+<th:block th:if="${werknemer}" th:object="${werknemer}">
+    <h1 th:text="*{volledigeNaam}"></h1>
+    <img th:src="@{/images/{id}.jpg(id=*{id})}" th:alt="*{id}">
+    <div th:text="Nummer"></div>
+    <strong th:text="*{id}"></strong>
+    <div th:text="Budget"></div>
+    <strong th:text="*{#numbers.formatDecimal(budget,1,2)}"></strong>
+    <nav>
+        <a th:href="@{/werknemer/{id}/bestellingen(id=*{id})}">Vorige bestellingen</a>
+        <a th:href="@{/werknemer/{id}/nieuweBestelling(id=*{id})}">Nieuwe bestelling</a>
+        <a th:href="@{/}">Startpagina</a>
+    </nav>
+</th:block>
+</body>
+</html>

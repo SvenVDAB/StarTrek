@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title= ${werknemer} ? ${werknemer.volledigeNaam} :
+'Werknemer niet gevonden')"></head>
+<body>
+<script th:src="@{/js/preventDoubleSubmit.js}" defer}></script>
+<th:block th:if="not ${werknemer}"><h1>Werknemer niet gevonden.</h1></th:block>
+<th:block th:if="${werknemer}">
+    <form th:object="${bestelling}" method="post" th:action="@{/werknemer/{id}/nieuweBestelling(id=*{werknemerId})}">
+        <input th:field="*{id}" type="hidden">
+        <input th:field="*{werknemerId}" type="hidden">
+        <div>Omschrijving</div>
+        <span th:errors="*{omschrijving}"></span>
+        <input th:field="*{omschrijving}" required autofocus>
+        <div>bedrag</div>
+        <span th:errors="*{bedrag}"></span>
+        <input th:field="*{bedrag}" required type="number" min="0.01" step="0.01">
+        <div>
+            <button>Bestel</button>
+        </div>
+    </form>
+</th:block>
+<a th:href="@{/}">Startpagina</a>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Werknemers')"></head>
+<body>
+<h1>Werknemers</h1>
+<ul>
+    <li th:each="werknemer : ${werknemers}" th:object="${werknemer}">
+        <a th:text="*{volledigeNaam}" th:href="@{/werknemer/{id}(id=*{id})}"></a>
+    </li>
+</ul>
+</body>
+</html>
