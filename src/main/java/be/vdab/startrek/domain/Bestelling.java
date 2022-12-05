@@ -15,7 +15,8 @@ public class Bestelling {
     private final String omschrijving;
     @NotNull
     @Positive
-    @NumberFormat(pattern="#,##0.00")
+    //@NumberFormat(pattern="#,##0.00")
+    @NumberFormat(pattern="0.00")
     private final BigDecimal bedrag;
 
     public Bestelling(long id, long werknemerId, String omschrijving, BigDecimal bedrag) {

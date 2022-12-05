@@ -55,7 +55,7 @@ public class BestellingController {
         if (errors.hasErrors()) {
             var modelAndView = new ModelAndView("nieuweBestelling");
             werknemerService.findById(id).ifPresent(werknemer -> modelAndView.addObject("werknemer", werknemer));
-            modelAndView.addObject(bestelling); //// waarom wordt dit niet automatisch meegegeven !!!???
+            //modelAndView.addObject(bestelling); //// waarom wordt dit niet automatisch meegegeven !!!???
             //modelAndView.addObject(errors);     ///// zelfde vraag !!!
             return modelAndView;
         }
